@@ -45,6 +45,14 @@ const Coin = () => {
       marginBottom: 20,
       fontFamily: "Montserrat",
     },
+    description: {
+      textAlign: "justify",
+      width: "100%",
+      padding: 25,
+      paddingBottom: 15,
+      paddingTop: 0,
+      fontFamily: "Montserrat",
+    },
   }));
   const classes = useStyles();
   return (
