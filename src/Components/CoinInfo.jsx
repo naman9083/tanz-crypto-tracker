@@ -18,6 +18,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { chartDays } from "../Config/data";
+import SelectButton from "./SelectButton";
 
 ChartJS.register(
   CategoryScale,
@@ -33,7 +35,6 @@ const CoinInfo = ({ coin }) => {
   const { currency } = CryptoState();
   const [HistoricalData, setHistoricalData] = useState([]);
   const [days, setDays] = useState(1);
-  const [label,setLabel] = useState("Prices of 1D")
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -86,10 +87,9 @@ const CoinInfo = ({ coin }) => {
     labels: labels,
     datasets: [
       {
-        label: label,
+        label: `Price ( past ${days} Days ) in ${currency}`,
         data: HistoricalData.map((a) => a[1]),
         borderColor: "gold",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ],
   };
@@ -105,59 +105,25 @@ const CoinInfo = ({ coin }) => {
           />
         ) : (
           <>
-            <Line data={data} />
+            <Line
+              data={data}
+              options={{
+                elements: {
+                  point: {
+                    radius: 1,
+                  },
+                },
+              }}
+            />
           </>
         )}
-        <div style={{ display: "flex", marginTop: 20 }}>
-          <button
-            style={{
-              backgroundColor: "transparent",
-              border: "none",
-              color: "gold",
-              cursor: "pointer",
-              outline: "none",
-              marginRight: 10,
-            }}
-            onClick={() => {
-              setDays(1);
-              setLabel("Prices of 1D")
-            }}
-          >
-            1D
-          </button>
-          <button
-            style={{
-              backgroundColor: "transparent",
-              border: "none",
-              color: "gold",
-              cursor: "pointer",
-              outline: "none",
-              marginRight: 10,
-            }}
-            onClick={() => {
-              setDays(7);
-              setLabel("Prices of 7D")
-            }}
-          >
-            7D
-          </button>
-          <button
-            style={{
-              backgroundColor: "transparent",
-              border: "none",
-              color: "gold",
-              cursor: "pointer",
-              outline: "none",
-              marginRight: 10,
-            }}
-            onClick={() => {
-              setDays(30);
-              setLabel("Prices of 30D")
-            }}
-          >
-            30D
-          </button>
-          </div>
+        <div style={{ display: "flex", marginTop: 20,justifyContent:"space-around",width:"100%" }}>
+          {chartDays.map((a) => (
+            <SelectButton key={a.label} selected={days === a.value} onClick={() => setDays(a.value)}
+             >{a.label}</SelectButton>
+          ))}
+        
+        </div>
       </div>
     </ThemeProvider>
   );

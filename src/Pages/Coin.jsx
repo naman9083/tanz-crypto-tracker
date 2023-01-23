@@ -97,7 +97,7 @@ const Coin = () => {
           
           {HTMLReactParser(coin?.description.en.split(". ")[1])}
       </Typography>
-      <div className={classes.market_data}>
+      <div className={classes.marketData}>
         <span style={{ display: "flex" }}>
           <Typography variant="h5" className={classes.heading}>
             Rank:
