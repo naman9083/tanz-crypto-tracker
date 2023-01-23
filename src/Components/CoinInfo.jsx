@@ -7,7 +7,6 @@ import {
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
-import { HistoricalChart } from "../Config/api";
 import { CryptoState } from "../Config/CryptoContext";
 import {
   Chart as ChartJS,
@@ -42,7 +41,7 @@ const CoinInfo = ({ coin }) => {
 
   const fetchData = async () => {
     const { data } = await axios.get(
-      HistoricalChart(coin.id, currency, days)
+      `https://api.coingecko.com/api/v3/coins/${coin.id}/market_chart?vs_currency=${currency}&days=${days}`
     );
     console.log("chala");
     console.log(data);
