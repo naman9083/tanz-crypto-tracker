@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import { Container } from "@mui/system";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { CryptoState } from "../Config/CryptoContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -29,6 +30,7 @@ const Header = () => {
   const { currency, setCurrency } = CryptoState();
   const classes = useStyles();
   console.log(currency);
+  const Navigate = useNavigate();
   const darkTheme = createTheme({
     palette: {
       primary: {
@@ -43,7 +45,7 @@ const Header = () => {
       <AppBar className={classes.toolbar} position="static">
         <Container>
           <Toolbar>
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant="h6" onClick={()=>Navigate("/")} className={classes.title}>
               Tanz Crypto Tracker
             </Typography>
             <Select
