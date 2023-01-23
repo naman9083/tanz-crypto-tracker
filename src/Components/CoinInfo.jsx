@@ -42,7 +42,7 @@ const CoinInfo = ({ coin }) => {
 
   const fetchData = async () => {
     const { data } = await axios.get(
-      `https://api.coingecko.com/api/v3/coins/${coin.id}/market_chart?vs_currency=${currency}&days=${days}`
+      HistoricalChart(coin.id, currency, days)
     );
     console.log("chala");
     console.log(data);
