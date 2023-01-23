@@ -21,7 +21,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" exact element={<Home />} />
-        <Route path="/coin/:id" element={<Coin />} />
+        <Route path="/coins/:id" element={<Coin />} />
       </Routes>
     </div>
   );

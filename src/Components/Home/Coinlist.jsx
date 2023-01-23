@@ -128,7 +128,7 @@ export default function Coinlist() {
                     const profit = row.price_change_percentage_24h > 0;
                     return (
                       <TableRow
-                        onClick={() => Navigate(`/coin/${row.id}`)}
+                        onClick={() => Navigate(`/coins/${row.id}`)}
                         className={classes.row}
                         key={row.name}
                       >
