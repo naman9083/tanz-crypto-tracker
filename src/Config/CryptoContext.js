@@ -15,17 +15,19 @@ const CryptoContext = ({ children }) => {
   const [user, setUser] = useState(null);
   const [watchList, setWatchList] = useState([]);
   const [pic, setPic] = useState("");
+  const [progress, setProgress] = useState(0);
+  const [imgLoading, setImgLoading] = useState(false);
   const [alert, setAlert] = useState({
     open: false,
     message: "",
     type: "success",
   });
   useEffect(() => {
-    onAuthStateChanged(auth,user=>{
-      if(user){
-        setUser(user)
-      }else{
-        setUser(null)
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
       }
     });
   }, []);
@@ -38,7 +40,7 @@ const CryptoContext = ({ children }) => {
     setLoading(false);
   };
 
-  useEffect(() => { 
+  useEffect(() => {
     switch (currency) {
       case "INR":
         setSymbol("₹");
@@ -81,7 +83,6 @@ const CryptoContext = ({ children }) => {
         break;
       default:
         setSymbol("₹");
-
     }
     if (user) {
       const coinRef = doc(db, "watchlist", user.uid);
@@ -94,7 +95,7 @@ const CryptoContext = ({ children }) => {
         unsubscribe();
       };
     }
-  }, [currency,user, setWatchList]);
+  }, [currency, user, setWatchList]);
 
   return (
     <Crypto.Provider
@@ -112,7 +113,10 @@ const CryptoContext = ({ children }) => {
         setWatchList,
         pic,
         setPic,
-        
+        progress,
+        setProgress,
+        imgLoading,
+        setImgLoading,
       }}
     >
       {children}

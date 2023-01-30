@@ -1,15 +1,21 @@
-import { Box, Button, TextField } from "@material-ui/core";
-import React, { useState } from "react";
+import { Avatar, Box, Button, TextField } from "@material-ui/core";
+import React, { useRef, useState } from "react";
 import { CryptoState } from "../../Config/CryptoContext";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../Firebase";
+import { handleImageChange } from "../Functions/uploadImage";
 
 const SignUp = ({ handleClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [username, setUsername] = useState("");
-  const { setAlert } = CryptoState();
+  const { setPic, setAlert, setProgress, setImgLoading,pic } = CryptoState();
+  const inputFile = useRef(null);
+  const onButtonClick = () => {
+    // `current` points to the mounted file input element
+    inputFile.current.click();
+  };
   const handleSubmit = async () => {
     if (password !== confirmPassword) {
       setAlert({
@@ -27,6 +33,7 @@ const SignUp = ({ handleClose }) => {
       );
       await updateProfile(result.user, {
         displayName: username,
+        photoURL: pic,
       });
 
       setAlert({
@@ -49,6 +56,33 @@ const SignUp = ({ handleClose }) => {
       p={3}
       style={{ display: "flex", flexDirection: "column", gap: "20px" }}
     >
+      <Avatar
+        src= {pic || "https://www.flaticon.com/svg/static/icons/svg/3135/3135715.svg"}
+        align="center"
+        onClick={onButtonClick}
+        style={{
+          width: 100,
+          height: 100,
+          margin: "auto",
+          cursor: "pointer",
+          backgroundColor: "gold",
+        }}
+      />
+      <input
+        type="file"
+        id="file"
+        ref={inputFile}
+        onChange={(e) =>
+          handleImageChange(
+            e.target.files[0],
+            setPic,
+            setAlert,
+            setProgress,
+            setImgLoading
+          )
+        }
+        style={{ display: "none" }}
+      />
       <TextField
         label="Enter Name"
         type="text"
@@ -102,8 +136,6 @@ const SignUp = ({ handleClose }) => {
 };
 
 export default SignUp;
-
-
 
 // 1 2 3 4 5 6
 // 1 2 3 4

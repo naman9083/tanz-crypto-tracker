@@ -38,6 +38,7 @@ export const handleImageChange = (pics,setPic,setAlert,setProgress,setImgLoading
           getDownloadURL(uploadTask.snapshot.ref).then((url) => {
             setPic(url);
             console.log(url);
+            if(auth.currentUser!==null){
             updateProfile(auth.currentUser, {
               photoURL: url,
             })
@@ -48,6 +49,7 @@ export const handleImageChange = (pics,setPic,setAlert,setProgress,setImgLoading
                   open: true,
                 });
                 setImgLoading(false);
+
               })
               .catch((error) => {
                 setAlert({
@@ -56,6 +58,15 @@ export const handleImageChange = (pics,setPic,setAlert,setProgress,setImgLoading
                   open: true,
                 });
               });
+            }
+            else{
+              setAlert({
+                type: "warning",
+                message: "Fill Other Details to Save Profile Picture",
+                open: true,
+              });
+              setImgLoading(false);
+            }
           });
         }
       );

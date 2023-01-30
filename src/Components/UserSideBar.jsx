@@ -68,11 +68,20 @@ const useStyles = makeStyles({
 
 export default function UserSideBar() {
   const classes = useStyles();
-  const { user, setAlert, watchList, coins, symbol, pic, setPic } =
-    CryptoState();
+  const {
+    user,
+    setAlert,
+    watchList,
+    coins,
+    symbol,
+    setPic,
+    progress,
+    setProgress,
+    imgLoading,
+    setImgLoading,
+  } = CryptoState();
 
-  const [progress, setProgress] = useState(0);
-  const [imgLoading, setImgLoading] = useState(false);
+  
   const [gPic, setGPic] = useState("");
   const [state, setState] = useState({
     top: false,
@@ -81,7 +90,6 @@ export default function UserSideBar() {
     right: false,
   });
   const inputFile = useRef(null);
-
   const onButtonClick = () => {
     // `current` points to the mounted file input element
     inputFile.current.click();
@@ -198,7 +206,7 @@ export default function UserSideBar() {
                 ) : (
                   <Avatar
                     onClick={onButtonClick}
-                    src={ gPic}
+                    src={gPic}
                     alt={user.displayName || user.email}
                     className={classes.avatar}
                   />
