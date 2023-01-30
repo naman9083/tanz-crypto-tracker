@@ -66,7 +66,7 @@ const useStyles = makeStyles({
 export default function UserSideBar() {
   const classes = useStyles();
   const { user, setAlert, watchList, coins, symbol } = CryptoState();
-  // const [pic, setPic] = useState("");
+  const [pic, setPic] = useState("");
   const [state, setState] = useState({
     top: false,
     left: false,
@@ -74,11 +74,52 @@ export default function UserSideBar() {
     right: false,
   });
   const inputFile = useRef(null);
+  useEffect(() => {
+    if (user.photoURL) {
+      setPic(user.photoURL);
+      
+    }
+  }, [user]);
   const onButtonClick = () => {
     // `current` points to the mounted file input element
     inputFile.current.click();
   };
-  
+  const drawerItems = (coin) =>{
+    if (watchList.includes(coin.id)) {
+      return (
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: 10,
+            color: "white",
+          }}
+        >
+          <span
+            style={{
+              fontSize: 15,
+              textShadow: "0px 0px 5px black",
+            }}
+          >
+            {coin.name}
+          </span>
+          <span
+            style={{
+              fontSize: 15,
+              textShadow: "0px 0px 5px black",
+            }}
+          >
+            {symbol}{" "}
+            {numberWithCommas(
+              coin.current_price.toFixed(2)
+            )}
+          </span>
+        </div>
+      );
+    }
+  };
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -128,7 +169,7 @@ export default function UserSideBar() {
                 <Avatar
                   className={classes.avatar}
                   onClick={onButtonClick}
-                  src={`${user.photoURL}`}
+                  src={pic || `https://avatars.dicebear.com/api/human/${user.email}.svg`}
                   alt={user.displayName || user.email}
                 />
                 <input
@@ -160,46 +201,9 @@ export default function UserSideBar() {
                   </span>
                   
                   {
-                    coins.map((coin) => {
-                      if (watchList.includes(coin.id)) {
-                        return (
-                          <div
-                            style={{
-                              width: "100%",
-                              display: "flex",
-                              justifyContent: "space-between",
-                              alignItems: "center",
-                              gap: 10,
-                              color: "white",
-                            }}
-                          >
-                            <span
-                              style={{
-                                fontSize: 15,
-                                textShadow: "0px 0px 5px black",
-                              }}
-                            >
-                              {coin.name}
-                            </span>
-                            <span
-                              style={{
-                                fontSize: 15,
-                                textShadow: "0px 0px 5px black",
-                              }}
-                            >
-                              {symbol}{" "}
-                              {numberWithCommas(
-                                coin.current_price.toFixed(2)
-                              )}
-                            </span>
-                          </div>
-                        );
-                      }
-
-                    
-
-                     
-                    })
+                    coins.map((coin) =>
+                      drawerItems(coin)
+                    )
                   }
                 </div>
               </div>
