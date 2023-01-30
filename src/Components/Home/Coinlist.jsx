@@ -15,9 +15,7 @@ import {
   Table,
   Paper,
 } from "@material-ui/core";
-import axios from "axios";
 import { CryptoState } from "../../Config/CryptoContext";
-import { CoinList } from "../../Config/api";
 import { Pagination } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -26,13 +24,12 @@ export function numberWithCommas(x) {
 }
 
 export default function Coinlist() {
-  const [coins, setCoins] = useState([]);
-  const [loading, setLoading] = useState(false);
+  
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const Navigate = useNavigate();
 
-  const { currency, symbol } = CryptoState();
+  const { currency, symbol,coins,loading,fetchCoins } = CryptoState();
 
   const useStyles = makeStyles({
     row: {
@@ -61,14 +58,7 @@ export default function Coinlist() {
     },
   });
 
-  const fetchCoins = async () => {
-    setLoading(true);
-    const { data } = await axios.get(CoinList(currency));
-    console.log(data);
-
-    setCoins(data);
-    setLoading(false);
-  };
+  
 
   useEffect(() => {
     fetchCoins();
