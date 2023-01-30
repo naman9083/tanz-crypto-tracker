@@ -1,7 +1,8 @@
 import axios from "axios";
 import { onAuthStateChanged } from "firebase/auth";
+import { doc, onSnapshot } from "firebase/firestore";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../Firebase";
+import { auth, db } from "../Firebase";
 import { CoinList } from "./api";
 
 const Crypto = createContext();
@@ -39,7 +40,18 @@ const CryptoContext = ({ children }) => {
   useEffect(() => { 
     if (currency === "INR") setSymbol("₹");
     else if (currency === "USD") setSymbol("$");
-  }, [currency]);
+    if (user) {
+      const coinRef = doc(db, "watchlist", user.uid);
+      var unsubscribe = onSnapshot(coinRef, (coin) => {
+        if (coin.exists()) {
+          setWatchList(coin.data().coins);
+        }
+      });
+      return () => {
+        unsubscribe();
+      };
+    }
+  }, [currency,user, setWatchList]);
 
   return (
     <Crypto.Provider

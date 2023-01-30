@@ -11,13 +11,12 @@ import CoinInfo from "../Components/CoinInfo";
 import { SingleCoin } from "../Config/api";
 import { CryptoState } from "../Config/CryptoContext";
 import HTMLReactParser from "html-react-parser";
-import { doc, onSnapshot, setDoc } from "@firebase/firestore";
+import { doc, setDoc } from "@firebase/firestore";
 import { db } from "../Firebase";
 const Coin = () => {
   const { id } = useParams();
   const [coin, setCoin] = useState();
-  const { currency, symbol, user, watchList, setAlert, setWatchList } =
-    CryptoState();
+  const { currency, symbol, user, watchList, setAlert } = CryptoState();
   const fetchCoin = async () => {
     const { data } = await axios.get(SingleCoin(id));
 
@@ -31,20 +30,6 @@ const Coin = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const inWatchlist = watchList?.includes(coin?.id);
-
-  useEffect(() => {
-    if (user) {
-      const coinRef = doc(db, "watchlist", user.uid);
-      var unsubscribe = onSnapshot(coinRef, (coin) => {
-        if (coin.exists()) {
-          setWatchList(coin.data().coins);
-        }
-      });
-      return () => {
-        unsubscribe();
-      };
-    }
-  }, [user, setWatchList]);
 
   const useStyles = makeStyles((theme) => ({
     container: {
@@ -225,9 +210,7 @@ const Coin = () => {
                 height: 40,
                 fontWeight: "bold",
               }}
-              onClick={
-                inWatchlist ?  removeFromWatchList :addToWatchlist 
-              }
+              onClick={inWatchlist ? removeFromWatchList : addToWatchlist}
             >
               {inWatchlist ? "Remove from Watchlist" : "Add To Watchlist"}{" "}
             </Button>
