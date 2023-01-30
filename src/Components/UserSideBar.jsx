@@ -4,9 +4,11 @@ import Drawer from "@material-ui/core/Drawer";
 import { CryptoState } from "../Config/CryptoContext";
 import { Avatar, Button } from "@material-ui/core";
 import { signOut } from "firebase/auth";
-import { auth } from "../Firebase";
+import { auth, db } from "../Firebase";
 import { handleImageChange } from "./Functions/uploadImage";
 import { CircularProgressbar } from "react-circular-progressbar";
+import { AiFillDelete } from "react-icons/ai";
+import { doc, setDoc } from "firebase/firestore";
 
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -64,6 +66,18 @@ const useStyles = makeStyles({
     overflowY: "scroll",
     backgroundColor: "grey",
   },
+  coin: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: 10,
+    padding: 10,
+    borderRadius: 5,
+    backgroundColor: "#EEBC1D",
+    color: "black",
+    boxShadow: "0px 0px 5px black",
+  },
 });
 
 export default function UserSideBar() {
@@ -81,7 +95,6 @@ export default function UserSideBar() {
     setImgLoading,
   } = CryptoState();
 
-  
   const [gPic, setGPic] = useState("");
   const [state, setState] = useState({
     top: false,
@@ -103,17 +116,7 @@ export default function UserSideBar() {
   const drawerItems = (coin) => {
     if (watchList.includes(coin.id)) {
       return (
-        <div
-          key={coin.id}
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: 10,
-            color: "white",
-          }}
-        >
+        <div key={coin.id} className={classes.coin}>
           <span
             style={{
               fontSize: 15,
@@ -124,11 +127,17 @@ export default function UserSideBar() {
           </span>
           <span
             style={{
-              fontSize: 15,
-              textShadow: "0px 0px 5px black",
+              display: "flex",
+              gap: 8,
             }}
           >
             {symbol} {numberWithCommas(coin.current_price.toFixed(2))}
+            <AiFillDelete
+              style={{ color: "red", cursor: "pointer", fontSize: "16" }}
+              onClick={() => {
+                removeFromWatchList(coin);
+              }}
+            />
           </span>
         </div>
       );
@@ -144,6 +153,29 @@ export default function UserSideBar() {
     }
 
     setState({ ...state, [anchor]: open });
+  };
+  const removeFromWatchList = async (coin) => {
+    const coinRef = doc(db, "watchlist", user.uid);
+    try {
+      await setDoc(
+        coinRef,
+        {
+          coins: watchList.filter((watch) => watch !== coin?.id),
+        },
+        { merge: true }
+      );
+      setAlert({
+        type: "success",
+        message: `${coin.name} removed from watchlist`,
+        open: true,
+      });
+    } catch (error) {
+      setAlert({
+        type: "error",
+        message: error.message,
+        open: true,
+      });
+    }
   };
   const logout = () => {
     signOut(auth);

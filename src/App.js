@@ -1,10 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./Components/Header";
-import Coin from "./Pages/Coin";
-import Home from "./Pages/Home";
-import { makeStyles } from "@material-ui/core";
+
+import { CircularProgress, makeStyles } from "@material-ui/core";
 import Alert from "./Components/Alert";
+import { lazy, Suspense } from "react";
+const HomePage = lazy(() => import("./Pages/Home"));
+const CoinPage = lazy(() => import("./Pages/Coin"));
 
 function App() {
   const useStyles = makeStyles(() => ({
@@ -14,18 +16,29 @@ function App() {
       minHeight: "100vh",
     },
   }));
-  
 
   const classes = useStyles();
   return (
     <div className={classes.App}>
       <Header />
+        <Suspense
+          fallback={
+            <div>
+              <CircularProgress
+                color="secondary"
+                style={{ position: "absolute", top: "50%", left: "50%" }}
+              />
+            </div>
+          }
+        >
       <Routes>
-        <Route path="/" exact element={<Home />} />
-        <Route path="/coins/:id" element={<Coin />} />
+
+          <Route path="/" exact element={<HomePage />} />
+          <Route path="/coins/:id" element={<CoinPage />} />
       </Routes>
-      <Alert/>
-    </div>   
+        </Suspense>
+      <Alert />
+    </div>
   );
 }
 
