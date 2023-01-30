@@ -62,6 +62,14 @@ const Header = () => {
             >
               <MenuItem value="USD">USD</MenuItem>
               <MenuItem value="INR">INR</MenuItem>
+              <MenuItem value="EUR">EUR</MenuItem>
+              <MenuItem value="GBP">GBP</MenuItem>
+              <MenuItem value="AUD">AUD</MenuItem>
+              <MenuItem value="CAD">CAD</MenuItem>
+              <MenuItem value="SGD">SGD</MenuItem>
+              <MenuItem value="JPY">JPY</MenuItem>
+              <MenuItem value="CNY">CNY</MenuItem>
+              
             </Select>
            {user?<UserSideBar/>: <AuthModal/>}
           </Toolbar>

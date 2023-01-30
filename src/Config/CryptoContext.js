@@ -38,8 +38,50 @@ const CryptoContext = ({ children }) => {
   };
 
   useEffect(() => { 
-    if (currency === "INR") setSymbol("₹");
-    else if (currency === "USD") setSymbol("$");
+    switch (currency) {
+      case "INR":
+        setSymbol("₹");
+        break;
+      case "USD":
+        setSymbol("$");
+        break;
+      case "EUR":
+        setSymbol("€");
+        break;
+      case "JPY":
+        setSymbol("¥");
+        break;
+      case "GBP":
+        setSymbol("£");
+        break;
+      case "AUD":
+        setSymbol("A$");
+        break;
+      case "CAD":
+        setSymbol("C$");
+        break;
+      case "CHF":
+        setSymbol("Fr");
+        break;
+      case "CNY":
+        setSymbol("¥");
+        break;
+      case "HKD":
+        setSymbol("HK$");
+        break;
+      case "NZD":
+        setSymbol("NZ$");
+        break;
+      case "SEK":
+        setSymbol("kr");
+        break;
+      case "SGD":
+        setSymbol("S$");
+        break;
+      default:
+        setSymbol("₹");
+
+    }
     if (user) {
       const coinRef = doc(db, "watchlist", user.uid);
       var unsubscribe = onSnapshot(coinRef, (coin) => {
