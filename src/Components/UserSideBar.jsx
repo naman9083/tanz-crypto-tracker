@@ -5,6 +5,9 @@ import { CryptoState } from "../Config/CryptoContext";
 import { Avatar, Button } from "@material-ui/core";
 import { signOut } from "firebase/auth";
 import { auth } from "../Firebase";
+import { handleImageChange } from "./Functions/uploadImage";
+import { CircularProgressbar } from "react-circular-progressbar";
+
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -65,8 +68,12 @@ const useStyles = makeStyles({
 
 export default function UserSideBar() {
   const classes = useStyles();
-  const { user, setAlert, watchList, coins, symbol } = CryptoState();
-  const [pic, setPic] = useState("");
+  const { user, setAlert, watchList, coins, symbol, pic, setPic } =
+    CryptoState();
+
+  const [progress, setProgress] = useState(0);
+  const [imgLoading, setImgLoading] = useState(false);
+  const [gPic, setGPic] = useState("");
   const [state, setState] = useState({
     top: false,
     left: false,
@@ -74,20 +81,22 @@ export default function UserSideBar() {
     right: false,
   });
   const inputFile = useRef(null);
-  useEffect(() => {
-    if (user.photoURL) {
-      setPic(user.photoURL);
-      
-    }
-  }, [user]);
+
   const onButtonClick = () => {
     // `current` points to the mounted file input element
     inputFile.current.click();
   };
-  const drawerItems = (coin) =>{
+  useEffect(() => {
+    if (user.photoURL) {
+      setGPic(user.photoURL);
+    }
+  }, [user.photoURL]);
+
+  const drawerItems = (coin) => {
     if (watchList.includes(coin.id)) {
       return (
         <div
+          key={coin.id}
           style={{
             width: "100%",
             display: "flex",
@@ -111,10 +120,7 @@ export default function UserSideBar() {
               textShadow: "0px 0px 5px black",
             }}
           >
-            {symbol}{" "}
-            {numberWithCommas(
-              coin.current_price.toFixed(2)
-            )}
+            {symbol} {numberWithCommas(coin.current_price.toFixed(2))}
           </span>
         </div>
       );
@@ -166,16 +172,51 @@ export default function UserSideBar() {
           >
             <div className={classes.container}>
               <div className={classes.profile}>
-                <Avatar
-                  className={classes.avatar}
-                  onClick={onButtonClick}
-                  src={pic || `https://avatars.dicebear.com/api/human/${user.email}.svg`}
-                  alt={user.displayName || user.email}
-                />
+                {imgLoading ? (
+                  <CircularProgressbar
+                    value={progress}
+                    text={`${progress}%`}
+                    styles={{
+                      root: { width: 200, height: 200 },
+                      path: {
+                        stroke: `rgba(62, 152, 199, ${progress / 100})`,
+                        textAlign: "center",
+                      },
+                      trail: {
+                        stroke: "#d6d6d6",
+                        textAlign: "center",
+                      },
+                      text: {
+                        fill: "green",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        display: "flex",
+                        textAlign: "center",
+                      },
+                    }}
+                  />
+                ) : (
+                  <Avatar
+                    onClick={onButtonClick}
+                    src={ gPic}
+                    alt={user.displayName || user.email}
+                    className={classes.avatar}
+                  />
+                )}
+
                 <input
                   type="file"
                   id="file"
                   ref={inputFile}
+                  onChange={(e) =>
+                    handleImageChange(
+                      e.target.files[0],
+                      setPic,
+                      setAlert,
+                      setProgress,
+                      setImgLoading
+                    )
+                  }
                   style={{ display: "none" }}
                 />
                 <span
@@ -199,12 +240,8 @@ export default function UserSideBar() {
                   >
                     Watchlist
                   </span>
-                  
-                  {
-                    coins.map((coin) =>
-                      drawerItems(coin)
-                    )
-                  }
+
+                  {coins.map((coin) => drawerItems(coin))}
                 </div>
               </div>
               <Button
@@ -221,6 +258,4 @@ export default function UserSideBar() {
       ))}
     </div>
   );
-
 }
-

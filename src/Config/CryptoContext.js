@@ -14,10 +14,11 @@ const CryptoContext = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [watchList, setWatchList] = useState([]);
+  const [pic, setPic] = useState("");
   const [alert, setAlert] = useState({
     open: false,
     message: "",
-    type: "",
+    type: "success",
   });
   useEffect(() => {
     onAuthStateChanged(auth,user=>{
@@ -109,6 +110,8 @@ const CryptoContext = ({ children }) => {
         user,
         watchList,
         setWatchList,
+        pic,
+        setPic,
         
       }}
     >
