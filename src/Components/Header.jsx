@@ -27,6 +27,11 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     backgroundColor: "#14161a",
   },
+  "@media (max-width: 600px)": {  
+    title: {
+      fontSize: 20,
+    },
+  },
 }));
 const Header = () => {
   const { currency, setCurrency ,user } = CryptoState();

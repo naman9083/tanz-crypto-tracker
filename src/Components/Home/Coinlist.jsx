@@ -44,7 +44,24 @@ export default function Coinlist() {
       "& .MuiPaginationItem-root": {
         color: "gold",
       },
+      
+      "@media (max-width: 600px)": {
+        "& .MuiPaginationItem-root": {
+          fontSize: 10,
+
+
+        },
+        row: {
+          fontSize: 10,
+        },
+        pagination: {
+          fontSize: 10,
+          width: 50,
+        },
+    }
+
     },
+
   });
 
   const classes = useStyles();
@@ -131,6 +148,7 @@ export default function Coinlist() {
                           }}
                         >
                           <img
+                            
                             src={row?.image}
                             alt={row.name}
                             height="50"

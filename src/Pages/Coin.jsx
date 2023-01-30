@@ -68,18 +68,30 @@ const Coin = () => {
       padding: 25,
       paddingTop: 10,
       width: "100%",
-      [theme.breakpoints.down("md")]: {
-        display: "flex",
-        justifyContent: "space-around",
+      // [theme.breakpoints.down("md")]: {
+      //   display: "flex",
+      //   justifyContent: "space-around",
+      // },
+     
+
+      // [theme.breakpoints.down("sm")]: {
+      //   flexDirection: "column",
+      //   alignItems: "center",
+      // },
+      // [theme.breakpoints.down("xs")]: {
+      //   alignItems: "start",
+      // },
+    },
+    "@media (max-width: 600px)": {
+      sidebar: {
+        width: "100%",
       },
-      [theme.breakpoints.down("sm")]: {
+      marketData: {
         flexDirection: "column",
-        alignItems: "center",
-      },
-      [theme.breakpoints.down("xs")]: {
         alignItems: "start",
       },
     },
+    
   }));
   const addToWatchlist = async () => {
     const coinRef = doc(db, "watchlist", user.uid);
@@ -146,6 +158,9 @@ const Coin = () => {
           {". "}
 
           {HTMLReactParser(coin?.description.en.split(". ")[1])}
+          {". "}
+
+          {HTMLReactParser(coin?.description.en.split(". ")[2])}
         </Typography>
         <div className={classes.marketData}>
           <span style={{ display: "flex" }}>
@@ -206,6 +221,7 @@ const Coin = () => {
               varient="outlined"
               style={{
                 backgroundColor: inWatchlist ? "#ff0000" : "Gold",
+                color: inWatchlist ? "white" : "black",
                 width: "100%",
                 height: 40,
                 fontWeight: "bold",

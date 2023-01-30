@@ -25,6 +25,20 @@ const useStyles = makeStyles(() => ({
     height: "40%",
     justifyContent: "center",
   },
+  "@media (max-width: 600px)": {
+    bannerContent: {
+      height: 300,
+    },
+    tagline: {
+      height: "30%",
+      fontSize: 14,
+      display: "none",
+      flexDirection: "column",
+
+      fontWeight: 500,
+    },
+  },
+
 }));
 
 const Banner = () => {
@@ -44,6 +58,7 @@ const Banner = () => {
             Tanz Crypto Tracker
           </Typography>
           <Typography
+      
             variant="subtitle2"
             style={{
               fontFamily: "Montserrat",

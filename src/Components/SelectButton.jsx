@@ -23,7 +23,18 @@ const SelectButton = ({children,selected,onClick}) => {
             },
             width: "22%",
 
+        },
+        "@media (max-width: 600px)": {
+
+            SelectButton: {
+                width: "100%",
+                padding: 5,
+                paddingRight:10,
+                paddingLeft:10,
+                fontSize: 14,
+            } 
         }
+
     }));
     const classes = useStyles();
 

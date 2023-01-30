@@ -21,7 +21,15 @@ const Carousel = () => {
       cursor: "pointer",
       textTransform: "uppercase",
       color: "white",
-    }
+      
+    },
+    "@media (max-width: 512px)": {
+      
+      carousel: {
+        height: "100%",
+      },
+    },
+
   }));
   const numberWithCommas = (x) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
