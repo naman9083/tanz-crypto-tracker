@@ -1,14 +1,26 @@
 {
   "files": {
-    "main.css": "/static/css/main.1a9a7a29.css",
-    "main.js": "/static/js/main.802459c6.js",
-    "static/media/banner2.jpg": "/static/media/banner2.275c4326d16fc79f1990.jpg",
-    "index.html": "/index.html",
-    "main.1a9a7a29.css.map": "/static/css/main.1a9a7a29.css.map",
-    "main.802459c6.js.map": "/static/js/main.802459c6.js.map"
+    "main.css": "/tanz-crypto-tracker/static/css/main.1a9a7a29.css",
+    "main.js": "/tanz-crypto-tracker/static/js/main.d9b0048f.js",
+    "static/js/64.3aa9bacf.chunk.js": "/tanz-crypto-tracker/static/js/64.3aa9bacf.chunk.js",
+    "static/js/167.e82d80d4.chunk.js": "/tanz-crypto-tracker/static/js/167.e82d80d4.chunk.js",
+    "static/js/894.d18c438a.chunk.js": "/tanz-crypto-tracker/static/js/894.d18c438a.chunk.js",
+    "static/js/114.f3a039a3.chunk.js": "/tanz-crypto-tracker/static/js/114.f3a039a3.chunk.js",
+    "static/js/929.80c8d3b1.chunk.js": "/tanz-crypto-tracker/static/js/929.80c8d3b1.chunk.js",
+    "static/js/102.e5878d90.chunk.js": "/tanz-crypto-tracker/static/js/102.e5878d90.chunk.js",
+    "static/media/banner2.jpg": "/tanz-crypto-tracker/static/media/banner2.275c4326d16fc79f1990.jpg",
+    "index.html": "/tanz-crypto-tracker/index.html",
+    "main.1a9a7a29.css.map": "/tanz-crypto-tracker/static/css/main.1a9a7a29.css.map",
+    "main.d9b0048f.js.map": "/tanz-crypto-tracker/static/js/main.d9b0048f.js.map",
+    "64.3aa9bacf.chunk.js.map": "/tanz-crypto-tracker/static/js/64.3aa9bacf.chunk.js.map",
+    "167.e82d80d4.chunk.js.map": "/tanz-crypto-tracker/static/js/167.e82d80d4.chunk.js.map",
+    "894.d18c438a.chunk.js.map": "/tanz-crypto-tracker/static/js/894.d18c438a.chunk.js.map",
+    "114.f3a039a3.chunk.js.map": "/tanz-crypto-tracker/static/js/114.f3a039a3.chunk.js.map",
+    "929.80c8d3b1.chunk.js.map": "/tanz-crypto-tracker/static/js/929.80c8d3b1.chunk.js.map",
+    "102.e5878d90.chunk.js.map": "/tanz-crypto-tracker/static/js/102.e5878d90.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1a9a7a29.css",
-    "static/js/main.802459c6.js"
+    "static/js/main.d9b0048f.js"
   ]
 }
