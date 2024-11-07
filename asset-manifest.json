@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/tanz-crypto-tracker/static/css/main.b90641cd.css",
-    "main.js": "/tanz-crypto-tracker/static/js/main.28346268.js",
-    "static/js/712.7fb0fc19.chunk.js": "/tanz-crypto-tracker/static/js/712.7fb0fc19.chunk.js",
-    "static/js/139.542948ee.chunk.js": "/tanz-crypto-tracker/static/js/139.542948ee.chunk.js",
-    "static/js/976.266ddcbf.chunk.js": "/tanz-crypto-tracker/static/js/976.266ddcbf.chunk.js",
-    "static/js/352.fa2416f2.chunk.js": "/tanz-crypto-tracker/static/js/352.fa2416f2.chunk.js",
-    "static/js/750.0209a3b8.chunk.js": "/tanz-crypto-tracker/static/js/750.0209a3b8.chunk.js",
-    "static/js/199.00ffe8a7.chunk.js": "/tanz-crypto-tracker/static/js/199.00ffe8a7.chunk.js",
+    "main.css": "/tanz-crypto-tracker/static/css/main.1a9a7a29.css",
+    "main.js": "/tanz-crypto-tracker/static/js/main.d9b0048f.js",
+    "static/js/64.3aa9bacf.chunk.js": "/tanz-crypto-tracker/static/js/64.3aa9bacf.chunk.js",
+    "static/js/167.e82d80d4.chunk.js": "/tanz-crypto-tracker/static/js/167.e82d80d4.chunk.js",
+    "static/js/894.d18c438a.chunk.js": "/tanz-crypto-tracker/static/js/894.d18c438a.chunk.js",
+    "static/js/114.f3a039a3.chunk.js": "/tanz-crypto-tracker/static/js/114.f3a039a3.chunk.js",
+    "static/js/929.80c8d3b1.chunk.js": "/tanz-crypto-tracker/static/js/929.80c8d3b1.chunk.js",
+    "static/js/102.e5878d90.chunk.js": "/tanz-crypto-tracker/static/js/102.e5878d90.chunk.js",
     "static/media/banner2.jpg": "/tanz-crypto-tracker/static/media/banner2.275c4326d16fc79f1990.jpg",
     "index.html": "/tanz-crypto-tracker/index.html",
-    "main.b90641cd.css.map": "/tanz-crypto-tracker/static/css/main.b90641cd.css.map",
-    "main.28346268.js.map": "/tanz-crypto-tracker/static/js/main.28346268.js.map",
-    "712.7fb0fc19.chunk.js.map": "/tanz-crypto-tracker/static/js/712.7fb0fc19.chunk.js.map",
-    "139.542948ee.chunk.js.map": "/tanz-crypto-tracker/static/js/139.542948ee.chunk.js.map",
-    "976.266ddcbf.chunk.js.map": "/tanz-crypto-tracker/static/js/976.266ddcbf.chunk.js.map",
-    "352.fa2416f2.chunk.js.map": "/tanz-crypto-tracker/static/js/352.fa2416f2.chunk.js.map",
-    "750.0209a3b8.chunk.js.map": "/tanz-crypto-tracker/static/js/750.0209a3b8.chunk.js.map",
-    "199.00ffe8a7.chunk.js.map": "/tanz-crypto-tracker/static/js/199.00ffe8a7.chunk.js.map"
+    "main.1a9a7a29.css.map": "/tanz-crypto-tracker/static/css/main.1a9a7a29.css.map",
+    "main.d9b0048f.js.map": "/tanz-crypto-tracker/static/js/main.d9b0048f.js.map",
+    "64.3aa9bacf.chunk.js.map": "/tanz-crypto-tracker/static/js/64.3aa9bacf.chunk.js.map",
+    "167.e82d80d4.chunk.js.map": "/tanz-crypto-tracker/static/js/167.e82d80d4.chunk.js.map",
+    "894.d18c438a.chunk.js.map": "/tanz-crypto-tracker/static/js/894.d18c438a.chunk.js.map",
+    "114.f3a039a3.chunk.js.map": "/tanz-crypto-tracker/static/js/114.f3a039a3.chunk.js.map",
+    "929.80c8d3b1.chunk.js.map": "/tanz-crypto-tracker/static/js/929.80c8d3b1.chunk.js.map",
+    "102.e5878d90.chunk.js.map": "/tanz-crypto-tracker/static/js/102.e5878d90.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b90641cd.css",
-    "static/js/main.28346268.js"
+    "static/css/main.1a9a7a29.css",
+    "static/js/main.d9b0048f.js"
   ]
 }
