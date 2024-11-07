@@ -1,6 +1,7 @@
 {
-  "homepage": "https://naman9083.github.io/tanz-crypto-tracker",
+  
   "name": "tanz-crypto-tracker",
+  
   "version": "0.1.0",
   "private": true,
   "dependencies": {
