@@ -1,10 +1,16 @@
-name: Node.js CI
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+    branches:
+      - Main
+      - gh-pages
+      - master
+
+  pull_request: 
+    branches:
+      - main
+      - master
 
 jobs:
   build:
